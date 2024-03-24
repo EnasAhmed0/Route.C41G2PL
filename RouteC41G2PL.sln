@@ -5,9 +5,14 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteC41G2PL", "RouteC41G2PL\RouteC41G2PL.csproj", "{E57FCF1F-A954-400B-99D9-9D02582B9E97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteC41G2AL", "RouteC41G2AL\RouteC41G2AL.csproj", "{034A070B-4D83-4276-B213-5E70D53AD7AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteC41G2DAL", "RouteC41G2AL\RouteC41G2DAL.csproj", "{034A070B-4D83-4276-B213-5E70D53AD7AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Route.C41.G02.BLL", "Route.C41.G02.BLL\Route.C41.G02.BLL.csproj", "{91F222A7-7B51-46FF-ADF6-AB4451D3B8B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{111E4779-8F28-4952-BFD7-F3B614F4C791}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

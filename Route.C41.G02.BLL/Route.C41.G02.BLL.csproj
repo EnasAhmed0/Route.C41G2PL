@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RouteC41G2AL\RouteC41G2AL.csproj" />
+    <ProjectReference Include="..\RouteC41G2AL\RouteC41G2DAL.csproj" />
   </ItemGroup>
 
 </Project>

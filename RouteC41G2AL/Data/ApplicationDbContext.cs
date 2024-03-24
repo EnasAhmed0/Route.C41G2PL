@@ -33,7 +33,7 @@ namespace RouteC41G2DAL.Data
         }
 
 
-        public  DbSet<Department> Department { get; set; } 
+        public  DbSet<Department> Departments { get; set; } 
 
 
 

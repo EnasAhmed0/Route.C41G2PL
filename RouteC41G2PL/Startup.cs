@@ -7,7 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Route.C41.G02.BLL.interfaces;
+using Route.C41.G02.BLL.Repositoies;
 using RouteC41G2DAL.Data;
+using RouteC41G2PL.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +43,7 @@ namespace RouteC41G2PL
 
             services.AddDbContext<ApplicationDbContext>(options 
                 => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddScoped<IDepartmentRepository , DepartmentRepository>();
 
         }
   

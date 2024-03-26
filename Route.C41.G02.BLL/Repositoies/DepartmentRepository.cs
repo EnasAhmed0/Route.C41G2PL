@@ -47,7 +47,9 @@ namespace Route.C41.G02.BLL.Repositoies
         }
 
         public IEnumerable<Department> GetAll()
-       =>  _dbcontext.Departments.AsNoTracking().ToList();
+        {
+          return _dbcontext.Departments.AsNoTracking().ToList();
+        }
 
 
     }

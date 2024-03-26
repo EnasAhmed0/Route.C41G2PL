@@ -29,28 +29,28 @@ namespace RouteC41G2PL.Controllers
         public IActionResult Index()
         {
             var departments = _departmentsRepo.GetAll();
-            return View();
+            return View(departments);
         }
 
         public IActionResult Create()
         {
             return View();
         }
-
-        public IActionResult Create(Department depaartment)
+        [HttpPost]
+        public IActionResult Create(Department department)
         {
             if (ModelState.IsValid) // Server side Validation
             {
-                var count = _departmentsRepo.Add(depaartment);
+                var count = _departmentsRepo.Add(department);
                 if (count > 0)
                 {
                     return RedirectToAction(nameof(Index));
                 }
             }
-            return View(depaartment);
+            return View(department);
         }
-        [HttpGet]
 
+        [HttpGet]
         public IActionResult Details(int? id, string ViewName = "Details")
         {
             if (!id.HasValue)

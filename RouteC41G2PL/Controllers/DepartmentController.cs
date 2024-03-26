@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using Route.C41.G02.BLL.interfaces;
 using RouteC41G2DAL.Models;
 using System;
@@ -12,10 +14,12 @@ namespace RouteC41G2PL.Controllers
         //composition : Departmentcontroller has a DepartmentController
 
         private readonly IDepartmentRepository _departmentsRepo;
+        private readonly IHostEnvironment _env;
 
-        public DepartmentController(IDepartmentRepository departmentRepo)
+        public DepartmentController(IDepartmentRepository departmentRepo, IHostEnvironment env)
         {
             _departmentsRepo = departmentRepo;/*new DepartmentRepository(new AppDbContext);*/
+            _env = env;
         }
 
 
@@ -37,26 +41,26 @@ namespace RouteC41G2PL.Controllers
         {
             if (ModelState.IsValid) // Server side Validation
             {
-                var count =_departmentsRepo.Add(depaartment);
+                var count = _departmentsRepo.Add(depaartment);
                 if (count > 0)
                 {
-                    return RedirectToAction(nameof(Index));   
+                    return RedirectToAction(nameof(Index));
                 }
             }
             return View(depaartment);
         }
         [HttpGet]
 
-        public IActionResult Details(int? id , string ViewName= "Details")
+        public IActionResult Details(int? id, string ViewName = "Details")
         {
             if (!id.HasValue)
-                
-            return BadRequest();
+
+                return BadRequest();
             var department = _departmentsRepo.Get(id.Value);
 
             if (department == null)
                 return NotFound();
-            return View( ViewName,department);
+            return View(ViewName, department);
 
 
         }
@@ -89,19 +93,66 @@ namespace RouteC41G2PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Department department)
+        public IActionResult Edit([FromRoute] int id, Department department)
         {
-            if(ModelState.IsValid)
+            if (id != department.Id)
+                return BadRequest();
+            if (!ModelState.IsValid)
             {
+                return View(department);
+            }
+            try
+            {
+                _departmentsRepo.Update(department);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                if (_env.IsDevelopment())
+                {
+                    ModelState.AddModelError(string.Empty, ex.Message);
+
+                }
+                else
+                    ModelState.AddModelError(string.Empty, "An Error Has Occurred during Updating Department");
+
+                return View(department);
 
             }
+
         }
 
 
+        public IActionResult Delete(int? id)
+        {
+            return Details(id, "Delete");
+        }
+        [HttpPost]
+        public IActionResult Delete(Department department)
+        {
+            try
+            {
+                _departmentsRepo.Delete(department);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                if (_env.IsDevelopment())
+                {
+                    ModelState.AddModelError(string.Empty, ex.Message);
+
+                }
+                else
+                    ModelState.AddModelError(string.Empty, "An Error Has Occurred during Deleting Department");
+
+                return View(department);
+            }
 
 
 
 
 
+        }
     }
 }

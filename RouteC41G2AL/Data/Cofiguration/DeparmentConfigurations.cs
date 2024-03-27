@@ -16,8 +16,20 @@ namespace RouteC41G2DAL.Data.Cofiguration
             // Fluent APIS for "Department" Domain
 
             builder.Property(D =>D.Id).UseIdentityColumn(10,10);
-            builder.Property(D => D.Code).HasColumnType("Varchar").HasMaxLength(50).IsRequired();
-            builder.Property(D => D.Name).HasColumnType("Varchar").HasMaxLength(50).IsRequired();
+
+            builder.HasMany(D => D.Employees)
+                .WithOne(E => E.Department)
+                .HasForeignKey(E => E.Department)
+                .OnDelete(  DeleteBehavior.Cascade);
+
+
+
+
+
+
+
+          //  builder.Property(D => D.Code).HasColumnType("Varchar").HasMaxLength(50).IsRequired();
+          //  builder.Property(D => D.Name).HasColumnType("Varchar").HasMaxLength(50).IsRequired();
 
 
 

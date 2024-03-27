@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +18,9 @@ namespace RouteC41G2DAL.Models
     }
 
 
-    public class Employee
+    public class Employee : ModelBase
     {
-        public int Id { get; set; }
+       
         [Required(ErrorMessage = "name is Requird")]
         [MaxLength(50, ErrorMessage = "MAX length of name is 50 chars")]
         [MinLength(50, ErrorMessage = "MAX length of name is 50 chars")]
@@ -57,10 +58,12 @@ namespace RouteC41G2DAL.Models
 
 
         public Gender Gender { get; set; }
+        
+        
+        public int? DepartmentId { get; set; } // foreign KEY 
 
-
-
-
+        //[InverseProperty("Employees")]
+        public Department Department { get; set; }
 
 
 

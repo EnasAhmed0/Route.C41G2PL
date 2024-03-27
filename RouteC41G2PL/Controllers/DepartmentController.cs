@@ -29,6 +29,7 @@ namespace RouteC41G2PL.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            TempData.Keep();
 
             ViewData["Message"] = "HELLO VIEWDATA";
 
@@ -50,8 +51,16 @@ namespace RouteC41G2PL.Controllers
                 var count = _departmentsRepo.Add(department);
                 if (count > 0)
                 {
-                    return RedirectToAction(nameof(Index));
+                    TempData["message"] = "successfully";
+
                 }
+                else
+                {
+                    TempData["message"] = "not created:(";
+
+                }
+                    return RedirectToAction(nameof(Index));
+                
             }
             return View(department);
         }

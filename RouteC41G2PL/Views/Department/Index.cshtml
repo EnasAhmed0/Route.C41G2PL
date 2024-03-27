@@ -1,7 +1,27 @@
 ﻿@model IEnumerable<Department>
 @{
     ViewData["Title"] = "Index";
+    string viewDataMessage = ViewData["Message"] as string;
+    string vbagmessage = ViewBag.Message;
+
 }
+
+
+
+
+<div class="alert alert-warning" >
+    @ViewData["Message"]
+</div>
+
+<div class="alert alert-success">
+    @ViewBag.Message
+</div>
+
+
+
+
+
+
 
 <h1>Index</h1>
 

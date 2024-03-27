@@ -23,15 +23,21 @@ namespace RouteC41G2PL.Controllers
         }
 
 
-
+        
 
         // / Department / Index 
+        [HttpGet]
         public IActionResult Index()
         {
+
+            ViewData["Message"] = "HELLO VIEWDATA";
+
+            ViewBag.Message= "HELLO VIEWBAG";
+
             var departments = _departmentsRepo.GetAll();
             return View(departments);
         }
-
+        [HttpGet]
         public IActionResult Create()
         {
             return View();

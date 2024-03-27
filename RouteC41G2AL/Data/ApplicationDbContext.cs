@@ -13,8 +13,7 @@ namespace RouteC41G2DAL.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-       : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options) 
         {
         }
         //public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options) :base(options) 
@@ -28,6 +27,7 @@ namespace RouteC41G2DAL.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+
             // modelBuilder.ApplyConfiguration<Department>(new DeparmentConfigurations());
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
@@ -35,7 +35,7 @@ namespace RouteC41G2DAL.Data
 
         public  DbSet<Department> Departments { get; set; } 
 
-
+        public DbSet<Employee> Employees { get; set; }  
 
     }
 }
